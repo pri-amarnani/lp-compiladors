@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>funx</title>
+    <style>
+      /* Define the container for the layout */
+      .container {
+        display: flex; /* Enable flexbox layout */
+        align-items: center;
+      }
+
+
+      /* Define the styles for the left and right columns */
+      .left-column {
+        flex: 1; /* Take up 1 unit of space */
+        width: 50%;
+        height: 100vh;
+        background-color: #f1f1f1;
+        font-size: 20px;
+
+      }
+
+      .right-column {
+        flex: 1; /* Take up 1 unit of space */
+        width: 50%;
+        height: 100vh;
+        background-color: #899499;
+        font-size: 20px;
+      }
+      .text-area{
+        border-radius: 10px;
+        color:  #f7f9f9;
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 90%;
+        height: 50%;
+
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-column"> <!-- Esquerra -->
+
+          <form action="/" method="POST" style="height:30%; width:100%; position: absolute; bottom: 10px; left: 10px;">
+              <h1 style="color:purple;"> Consola</h1>
+              <textarea id="input-text" name="input" rows="10" cols="50" placeholder="Write your code here"></textarea> <!-- Equival a on s'introdueix el codi de consola -->
+              <input type="submit" value="Submit">
+          </form>
+
+          <br>
+          <h1 style="color:green;">Funcions</h1>
+
+          <ul>
+            {% for key,value in funcs.items() %} <!-- Permet visualitzar totes les funcions definides (part esquerra superior) -->
+              <li> <b>{{ key }}  </b>
+
+                    {%for item in value %}
+                        {%if loop.first and item %}
+                            {{item}}
+                            <br>
+                        {%endif%}
+                     <br>
+                    {%endfor%}
+
+             </li>
+             {% endfor %}
+          </ul>
+
+      </div>
+      <div class="right-column" style="align-items: flex-start;"> <!-- Part dreta=Resultats -->
+
+          <br>
+          <h1 style= "color:orange;">Resultats</h1>
+          <ul>
+            {% for item in last5 %}
+              <br>
+              <li> <b>IN {{num[loop.index0]}}: </b>
+                  {{ inputs[loop.index0] }} <!-- Imprimeix l'input -->
+                  <br>
+                  <b>OUT {{num[loop.index0]}}: </b> <!-- Imprimeix l'output -->
+                  {{item}}
+             </li>
+              <br>
+             {% endfor %}
+          </ul>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+
